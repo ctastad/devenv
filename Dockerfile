@@ -1,5 +1,6 @@
 # Use an Ubuntu base image
-FROM ubuntu:latest
+ARG BASE_IMAGE=ubuntu:latest 
+FROM ${BASE_IMAGE}
 
 # Install system dependencies and add PPAs in one RUN command
 RUN apt-get update && apt-get install -y software-properties-common \
