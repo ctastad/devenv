@@ -21,10 +21,10 @@ RUN apt-get update && apt-get install -y software-properties-common \
     && mv lazygit /usr/local/bin/ \
     && rm lazygit.tar.gz
 
-# Add a non-root user
-RUN useradd -m c
-USER c
-WORKDIR /home/c
+## Add a non-root user
+#RUN useradd -m c
+#USER c
+#WORKDIR /home/c
 
 # Clone AstroNvim
 RUN git clone --separate-git-dir=$HOME/.dotfiles https://github.com/ctastad/.dotfiles.git tmpdotfiles \

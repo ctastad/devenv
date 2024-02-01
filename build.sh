@@ -15,8 +15,23 @@ if [ -z "$BASE_IMAGE" ]; then
     exit 1
 fi
 
-# Build the Docker image with the specified base image
-docker build --build-arg BASE_IMAGE="$BASE_IMAGE" -t my-custom-image .
+# Check if a base image was passed as an argument
+if [ "$#" -eq 2 ]; then
+    IMAGE_NAME=$2
+else
+    # Prompt the user for the base image if not provided as an argument
+    echo "Enter the image name"
+    read IMAGE_NAME
+fi
 
-echo "Docker image built with base image: $BASE_IMAGE"
+# Check if the base image variable is empty
+if [ -z "$IMAGE_NAME" ]; then
+    echo "Image name cannot be empty."
+    exit 1
+fi
+
+# Example Docker build command
+docker build --build-arg BASE_IMAGE="$BASE_IMAGE" -t "$IMAGE_NAME" .
+
+echo "Docker image $IMAGE_NAME built successfully with $BASE_IMAGE."
 
